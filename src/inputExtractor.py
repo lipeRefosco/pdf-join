@@ -10,12 +10,12 @@ def inputExtractor(inputsUser: list) -> dict:
 
     for input in inputsUser[USER_INPUT_START:]:
 
-        if input_is_option(input):
-            if options_is_valid(input):
-                state = input
-                continue
-            else:
-                raise InputFilesExceptions(DEFAULT_MESSAGES.get("INVALID_OPTION"))
+        if input_is_option(input) and not options_is_valid(input):
+            raise InputFilesExceptions(DEFAULT_MESSAGES.get("INVALID_OPTION"))
+
+        if options_is_valid(input):
+            state = input
+            continue
 
         if DEFAULT_OUTPUT_STATE.__contains__(state):
             outputFile = input
