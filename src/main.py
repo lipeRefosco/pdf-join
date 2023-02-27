@@ -8,11 +8,12 @@ if __name__ == "__main__":
     try:
         userInput = input_extractor(argv)
         
-        dont_have_input_files = len(userInput.get("inputs")) == 0
+        have_input_files = len(userInput.get("inputs")) > 0
 
-        if dont_have_input_files:
+        if not have_input_files:
             raise InputFilesExceptions(DEFAULT_MESSAGES.get("NO_INPUT_FILES"))
         
+        # TODO: Verify if the output file inserted by user, already exist on file system
         print(userInput)
 
     except InputFilesExceptions as exception:
