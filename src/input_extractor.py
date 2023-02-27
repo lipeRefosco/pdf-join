@@ -3,7 +3,7 @@ from exceptions.default_messages import *
 from exceptions.InputFilesExceptions import InputFilesExceptions
 
 
-def inputExtractor(inputsUser: list) -> dict:
+def input_extractor(inputsUser: list) -> dict:
     inputFiles = []
     outputFile = DEFAULT_OUTPUT_FILENAME
     state = STATES.get("DEFAULT")
