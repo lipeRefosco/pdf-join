@@ -1,10 +1,10 @@
 # Param and statements
-DEFAULT_STATE = ["-o", "--output"]
-PARAMS = [*DEFAULT_STATE]
+DEFAULT_OUTPUT_STATE = ["-o", "--output"]
 STATES = {
     "DEFAULT" : ["default"],
-    "OUTPUT"  : DEFAULT_STATE
+    "OUTPUT"  : DEFAULT_OUTPUT_STATE
 }
+ALL_PARAMS = [*DEFAULT_OUTPUT_STATE]
 
 # Default 
 OPTION_SINTAX = "-" or "--"

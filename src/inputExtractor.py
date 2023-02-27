@@ -1,5 +1,6 @@
-from exceptions.InputFilesExceptions import InputFilesExceptions
 from consts import *
+from exceptions.default_messages import *
+from exceptions.InputFilesExceptions import InputFilesExceptions
 
 
 def inputExtractor(inputsUser: list) -> dict:
@@ -9,13 +10,14 @@ def inputExtractor(inputsUser: list) -> dict:
 
     for input in inputsUser[USER_INPUT_START:]:
 
-        if isOption(input):
-            if validOption(input):
+        if input_is_option(input):
+            if options_is_valid(input):
                 state = input
                 continue
-            else: raise InputFilesExceptions("Invalid option!")
+            else:
+                raise InputFilesExceptions(DEFAULT_MESSAGES.get("INVALID_OPTION"))
 
-        if DEFAULT_STATE.__contains__(state):
+        if DEFAULT_OUTPUT_STATE.__contains__(state):
             outputFile = input
             state = STATES.get("DEFAULT")
             continue
@@ -28,8 +30,8 @@ def inputExtractor(inputsUser: list) -> dict:
         "output" : outputFile,
     }
 
-def isOption(input: str) -> bool:
+def input_is_option(input: str) -> bool:
     return input.__contains__(OPTION_SINTAX)
 
-def validOption(input: str) -> bool:
-    return PARAMS.__contains__(input)
+def options_is_valid(input: str) -> bool:
+    return ALL_PARAMS.__contains__(input)
