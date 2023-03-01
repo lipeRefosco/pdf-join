@@ -2,7 +2,7 @@ from sys import argv
 
 from consts import *
 from input_extractor import input_extractor
-from exceptions.InputFilesExceptions import InputFilesExceptions
+from exceptions import InputFilesExceptions
 
 if __name__ == "__main__":
     try:

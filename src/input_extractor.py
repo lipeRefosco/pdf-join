@@ -1,5 +1,5 @@
 from consts import *
-from exceptions.InputFilesExceptions import InputFilesExceptions
+from exceptions import InputFilesExceptions
 
 
 def input_extractor(inputsUser: list) -> dict:
