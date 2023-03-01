@@ -1,5 +1,4 @@
 from consts import *
-from exceptions.default_messages import *
 from exceptions.InputFilesExceptions import InputFilesExceptions
 
 

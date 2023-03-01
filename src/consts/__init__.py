@@ -1,3 +1,5 @@
+from .default_messages import DEFAULT_MESSAGES
+
 # Param and statements
 OPTION_SINTAX = "-" or "--"
 DEFAULT_OUTPUT_STATE = ["-o", "--output"]
