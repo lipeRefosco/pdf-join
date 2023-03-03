@@ -1,6 +1,6 @@
 from sys import argv
 
-from consts import *
+from consts import DEFAULT_MESSAGES
 from exceptions import InputFilesExceptions
 from utils import input_extractor
 

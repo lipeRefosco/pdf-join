@@ -1,4 +1,11 @@
-from consts import *
+from consts import \
+    DEFAULT_OUTPUT_FILENAME, \
+    STATES, DEFAULT_MESSAGES, \
+    OUTPUT_OPTIONS, \
+    USER_INPUT_START, \
+    OPTION_SINTAX, \
+    ALL_PARAMS
+
 from exceptions import InputFilesExceptions
 
 
@@ -16,7 +23,7 @@ def input_extractor(inputsUser: list) -> dict:
             state = input
             continue
 
-        if DEFAULT_OUTPUT_STATE.__contains__(state):
+        if OUTPUT_OPTIONS.__contains__(state):
             outputFile = input
             state = STATES.get("DEFAULT")
             continue
