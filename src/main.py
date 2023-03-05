@@ -2,10 +2,10 @@ from sys import argv
 
 from consts import DEFAULT_MESSAGES
 from exceptions import InputFilesException
-from utils import input_extractor
+from utils import input_parser
 
 def main(user_args):
-        user_input = input_extractor(user_args)
+        user_input = input_parser(user_args)
         
         not_has_command = user_input["commands"] == None
         if not_has_command:

@@ -3,7 +3,7 @@ from consts import *
 from exceptions import InputFilesException
 
 
-def input_extractor(inputs_user: list) -> dict:
+def input_parser(inputs_user: list) -> dict:
     commands = None
     output_files = DEFAULT_OUTPUT_FILENAME
     input_files = []
