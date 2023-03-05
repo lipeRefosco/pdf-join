@@ -1,0 +1,2 @@
+
+COMMANDS = ["join"]

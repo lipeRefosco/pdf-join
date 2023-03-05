@@ -1,15 +1,35 @@
 import pytest
 
-from utils import input_extractor
-from exceptions import InputFilesExceptions
+from src.utils import input_extractor
+from src.exceptions import InputFilesException
+from src.consts import *
 
 class TestInputExtractor:
 
+    def test_extract_join_command_from_args(self):
+        terminalArgs = ["pythonFile.py", "join", "inputFileTest.pdf"]
+
+        expect = {
+                    "commands": "join",
+                    "inputs": ["inputFileTest.pdf"],
+                    "output": DEFAULT_OUTPUT_FILENAME
+                }
+        
+        result = input_extractor(terminalArgs)
+        
+        assert expect == result
+        ...
+        
 
     def test_if_can_parse_the_input_args_to_aplication_format(self):
-        terminalArgs = ['pythonFile.py', 'inputFileTest.pdf', '-o', 'myOutputFile.pdf']
+        terminalArgs = ["pythonFile.py", "join", "inputFileTest.pdf", "-o", "myOutputFile.pdf"]
         
-        expect = {'inputs': ['inputFileTest.pdf'], 'output': 'myOutputFile.pdf'}
+        expect = {
+                    "commands": "join",
+                    "inputs": ["inputFileTest.pdf"],
+                    "output": "myOutputFile.pdf"
+                }
+
         result = input_extractor(terminalArgs)
 
         assert expect == result
@@ -17,41 +37,43 @@ class TestInputExtractor:
 
 
     def test_if_dont_have_inputs(self):
-        terminalArgs = ['pythonFile.py']
+        terminalArgs = ["pythonFile.py"]
         
-        expect = {'inputs': [], 'output': 'default.pdf'}
+        expect = {"commands": None, "inputs": [], "output": "default.pdf"}
         result = input_extractor(terminalArgs)
         
         assert expect == result
 
 
     def test_if_extendend_sintax_of_options(self):
-        terminalArgs = ['pythonFile.py', '--output', 'myOutputFile.pdf']
+        terminalArgs = ["pythonFile.py", "--output", "myOutputFile.pdf"]
 
-        expect = {'inputs': [], 'output': 'myOutputFile.pdf'}
+        expect = {"commands": None, "inputs": [], "output": "myOutputFile.pdf"}
         result = input_extractor(terminalArgs)
         
         assert expect == result
 
 
     def test_if_dont_have_inputs_and_output_file_was_defined(self):
-        terminalArgs = ['pythonFile.py', '-o', 'myOutputFile.pdf']
+        terminalArgs = ["pythonFile.py", "-o", "myOutputFile.pdf"]
 
-        expect = {'inputs': [], 'output': 'myOutputFile.pdf'}
+        expect = {"commands": None, "inputs": [], "output": "myOutputFile.pdf"}
         result = input_extractor(terminalArgs)
         
         assert expect == result
-    
+
     
     def test_non_expected_option(self):
-        with pytest.raises(InputFilesExceptions):
-            terminalArgs = ['pythonFile.py', '-a', 'myOutputFile.pdf']
+        with pytest.raises(Exception) as e_info:
+            terminalArgs = ["pythonFile.py", "-a", "myOutputFile.pdf"]
             input_extractor(terminalArgs)
+        
+        assert str(e_info.value).__contains__(DEFAULT_MESSAGES.get("INVALID_OPTION"))
     
     
     def test_bad_option_inserted(self):
-        with pytest.raises(InputFilesExceptions):
-            terminalArgs = ['pythonFile.py', '-output', 'myOutputFile.pdf']
+        with pytest.raises(Exception) as e_info:
+            terminalArgs = ["pythonFile.py", "-output", "myOutputFile.pdf"]
             input_extractor(terminalArgs)
 
-        
+        assert str(e_info.value).__contains__(DEFAULT_MESSAGES.get("INVALID_OPTION"))

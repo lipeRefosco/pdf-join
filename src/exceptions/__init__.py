@@ -1,1 +1,1 @@
-from .InputFilesExceptions import InputFilesExceptions
+from .InputFilesException import InputFilesException

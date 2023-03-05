@@ -1,21 +1,26 @@
 from sys import argv
 
 from consts import DEFAULT_MESSAGES
-from exceptions import InputFilesExceptions
+from exceptions import InputFilesException
 from utils import input_extractor
+
+def main(user_args):
+        user_input = input_extractor(user_args)
+        
+        not_has_command = user_input["commands"] == None
+        if not_has_command:
+            raise InputFilesException(DEFAULT_MESSAGES.get("NO_COMMAND"))
+        
+        not_has_inputs_files = len(user_input["inputs"]) == 0
+        if not_has_inputs_files:
+             raise InputFilesException(DEFAULT_MESSAGES.get("NO_INPUT_FILES"))
+
+        # TODO: Verify if the output file inserted by user, already exist on file system
+        print(user_input)
 
 if __name__ == "__main__":
     try:
-        userInput = input_extractor(argv)
-        
-        has_input_files = len(userInput.get("inputs")) > 0
-
-        if not has_input_files:
-            raise InputFilesExceptions(DEFAULT_MESSAGES.get("NO_INPUT_FILES"))
-        
-        # TODO: Verify if the output file inserted by user, already exist on file system
-        print(userInput)
-
-    except InputFilesExceptions as exception:
+        main(argv)
+    except InputFilesException as exception:
         print(exception.message)
         

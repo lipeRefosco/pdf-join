@@ -5,4 +5,3 @@ STATES = {
     "DEFAULT" : ["default"],
     "OUTPUT"  : OUTPUT_OPTIONS
 }
-ALL_PARAMS = [*OUTPUT_OPTIONS]
