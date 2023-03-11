@@ -1,8 +1,10 @@
 import pytest
+import sys
+sys.path.append('src')
 
-from src.utils import input_parser
-from src.exceptions import InputFilesException
-from src.consts import *
+from utils import input_parser
+from exceptions import InputFilesException
+from consts import *
 
 class TestInputExtractor:
 
@@ -52,6 +54,7 @@ class TestInputExtractor:
         result = input_parser(terminalArgs)
         
         assert expect == result
+        ...
 
 
     def test_if_dont_have_inputs_and_output_file_was_defined(self):
@@ -61,6 +64,7 @@ class TestInputExtractor:
         result = input_parser(terminalArgs)
         
         assert expect == result
+        ...
 
     
     def test_non_expected_option(self):
@@ -69,7 +73,7 @@ class TestInputExtractor:
             input_parser(terminalArgs)
         
         assert str(e_info.value).__contains__(DEFAULT_MESSAGES.get("INVALID_OPTION"))
-    
+        ...
     
     def test_bad_option_inserted(self):
         with pytest.raises(Exception) as e_info:
@@ -77,3 +81,4 @@ class TestInputExtractor:
             input_parser(terminalArgs)
 
         assert str(e_info.value).__contains__(DEFAULT_MESSAGES.get("INVALID_OPTION"))
+        ...

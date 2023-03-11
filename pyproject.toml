@@ -1,0 +1,11 @@
+[buid-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "PDF Joins"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
