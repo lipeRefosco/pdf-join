@@ -2,9 +2,9 @@ import pytest
 import sys
 sys.path.append('src')
 
-from utils import input_parser
-from exceptions import InputFilesException
-from consts import *
+from src.utils import input_parser
+from src.exceptions import InputFilesException
+from src.consts import *
 
 class TestInputExtractor:
 
