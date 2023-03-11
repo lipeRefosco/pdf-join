@@ -1,7 +1,7 @@
 from sys import argv
 
 from consts import DEFAULT_MESSAGES
-from exceptions import InputFilesException
+from exceptions import *
 from utils import input_parser
 
 def main(user_args):
@@ -9,7 +9,7 @@ def main(user_args):
         
         not_has_command = user_input["commands"] == None
         if not_has_command:
-            raise InputFilesException(DEFAULT_MESSAGES.get("NO_COMMAND"))
+            raise NoCommandException(DEFAULT_MESSAGES.get("NO_COMMAND"))
         
         not_has_inputs_files = len(user_input["inputs"]) == 0
         if not_has_inputs_files:

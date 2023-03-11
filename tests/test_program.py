@@ -1,9 +1,9 @@
 import pytest
 
 from src.consts import *
-from src.exceptions import InputFilesException
+from src.exceptions import *
 from src.utils import *
-from main import main
+from src.main import main
 
 class TestProgram:
 
@@ -12,12 +12,24 @@ class TestProgram:
            user_inputs = ["mainFile.py", "join"]
            main(user_inputs)
 
-        assert str(e_info.value).__contains__(DEFAULT_MESSAGES.get("NO_INPUT_FILES"))
-        
+        assert e_info.typename.__contains__(InputFilesException.__name__)
+        ...
+
+
     def test_when_dont_have_command(self):
         with pytest.raises(Exception) as e_info:
            user_inputs = ["mainFile.py", "file1.pdf", "file2.pdf"]
            main(user_inputs)
 
-        assert str(e_info.value).__contains__(DEFAULT_MESSAGES.get("NO_COMMAND"))
+        assert e_info.typename.__contains__(NoCommandException.__name__)
+        ...
+
+
+    def test_when_has_invalid_option(self):
+        with pytest.raises(Exception) as e_info:
+            user_inputs = ["mainFile.py", "file1.pdf", "-a", "myOutput.pdf"]
+            main(user_inputs)
+
+        assert e_info.typename.__contains__(InvalidOptionException.__name__)
+        ...
         

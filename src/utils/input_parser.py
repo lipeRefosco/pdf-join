@@ -1,6 +1,6 @@
 from consts import *
 
-from exceptions import InputFilesException
+from exceptions import *
 
 
 def input_parser(inputs_user: list) -> dict:
@@ -17,7 +17,7 @@ def input_parser(inputs_user: list) -> dict:
 
         if input_is_option(user_input):
             if not options_is_valid(user_input):
-                raise InputFilesException(DEFAULT_MESSAGES.get("INVALID_OPTION") + ": " + user_input)
+                raise InvalidOptionException(DEFAULT_MESSAGES.get("INVALID_OPTION") + ": " + user_input)
 
             if options_is_valid(user_input):
                 state = user_input
