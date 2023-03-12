@@ -7,8 +7,8 @@ from utils import input_parser
 def main(user_args):
         user_input = input_parser(user_args)
         
-        not_has_command = user_input["commands"] == None
-        if not_has_command:
+        has_command = user_input["commands"] != None
+        if not has_command:
             raise NoCommandException(DEFAULT_MESSAGES.get("NO_COMMAND"))
         
         not_has_inputs_files = len(user_input["inputs"]) == 0
