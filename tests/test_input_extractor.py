@@ -1,10 +1,10 @@
 import pytest
 import sys
-sys.path.append('src')
+sys.path.append('pdf_join')
 
-from src.utils import input_parser
-from src.exceptions import InputFilesException
-from src.consts import *
+from pdf_join.utils import input_parser
+from pdf_join.exceptions import InputFilesException
+from pdf_join.consts import *
 
 class TestInputExtractor:
 

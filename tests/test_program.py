@@ -1,9 +1,9 @@
 import pytest
 
-from src.consts import *
-from src.exceptions import *
-from src.utils import *
-from src.main import main
+from pdf_join.consts import *
+from pdf_join.exceptions import *
+from pdf_join.utils import *
+from pdf_join.main import main
 
 class TestProgram:
 
