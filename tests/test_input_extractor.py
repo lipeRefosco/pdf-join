@@ -66,6 +66,15 @@ class TestInputExtractor:
         assert expect == result
         ...
 
+
+    def test_if_can_parse_space_scaped(self):
+        user_input = ["mainFile.py", "assets/a4 1.pdf"]
+        
+        result = input_parser(user_input)
+        expect = {"commands": None, "inputs": ["assets/a4 1.pdf"], "output": "default.pdf"}
+        
+        assert  result == expect
+
     
     def test_non_expected_option(self):
         with pytest.raises(Exception) as e_info:

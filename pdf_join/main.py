@@ -23,4 +23,7 @@ if __name__ == "__main__":
         main(argv)
     except InputFilesException as exception:
         print(exception.message)
+    
+    except NoCommandException as exception:
+        print(exception.message)
         
