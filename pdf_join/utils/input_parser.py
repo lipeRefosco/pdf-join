@@ -1,50 +1,44 @@
 from consts import *
-
 from exceptions import *
 
 
-def input_parser(inputs_user: list) -> dict:
-    commands = None
-    output_files = DEFAULT_OUTPUT_FILENAME
-    input_files = []
-    state = STATES.get("DEFAULT")
-
-    for user_input in inputs_user[USER_INPUT_START:]:
-
-        if input_is_command(user_input):
-            commands = user_input
-            continue
-
-        if input_is_option(user_input):
-            if not options_is_valid(user_input):
-                raise InvalidOptionException(DEFAULT_MESSAGES.get("INVALID_OPTION") + ": " + user_input)
-
-            if options_is_valid(user_input):
-                state = user_input
-                continue
-
-        if OUTPUT_OPTIONS.__contains__(state):
-            output_files = user_input
-            state = STATES.get("DEFAULT")
-            continue
-
-        input_files.append(user_input)
-        continue
-
-    return {
-        "commands": commands,
-        "inputs": input_files,
-        "output": output_files
+def input_parser(input_users: list) -> dict:
+    parsed = {
+        "command" : None,
+        "inputs" : set(),
+        "output" : DEFAULT_OUTPUT_FILENAME
     }
 
-def input_is_option(input: str) -> bool:
-    return input.__contains__(OPTION_SINTAX)
+    for idx, input_user in enumerate(input_users):
+        if input_is_command(input_user):
+            parsed["command"] = input_user
+            continue
+        
+        if input_is_option(input_user):
+            if not valid_option(input_user):
+                raise InvalidOptionException(DEFAULT_MESSAGES.get("INVALID_OPTION"))
+            
+            next_inputs = idx + 1
+            has_more_inputs = len(input_users[next_inputs:]) > 0
+            
+            if has_more_inputs:
+                option_handler = OPTIONS_HANDLER.get(input_user)
+                option_handler(input_users[next_inputs:], parsed)
+            continue
+        ...
+
+    parsed["inputs"] = parsed["inputs"] if len(parsed["inputs"]) > 0 else {}
+    
+    return parsed
 
 
-def input_is_command(input_user: str):
+def input_is_option(input_user: str) -> bool:
+    return input_user.__contains__(OPTION_SINTAX)
+
+
+def valid_option(option: str) -> bool:
+    return VALID_OPTIONS.__contains__(option)
+
+
+def input_is_command(input_user: str) -> bool:
     return COMMANDS.__contains__(input_user)
-
-
-def options_is_valid(input: str) -> bool:
-    return ALL_PARAMS.__contains__(input)
-

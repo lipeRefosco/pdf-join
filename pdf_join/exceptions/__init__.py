@@ -1,3 +1,3 @@
-from .InputFilesException import InputFilesException
+from .NoInputFilesException import NoInputFilesException
 from .NoCommandException import NoCommandException
 from .InvalidOptionException import InvalidOptionException
