@@ -41,4 +41,4 @@ def valid_option(option: str) -> bool:
 
 
 def input_is_command(input_user: str) -> bool:
-    return COMMANDS.__contains__(input_user)
+    return VALID_COMMANDS.__contains__(input_user)

@@ -1,2 +1,2 @@
 
-COMMANDS = ["join"]
+VALID_COMMANDS = ["join"]
