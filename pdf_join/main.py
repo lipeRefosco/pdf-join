@@ -1,6 +1,6 @@
 from sys import argv
 
-from consts import DEFAULT_MESSAGES, USER_INPUT_START
+from consts import DEFAULT_MESSAGES, USER_INPUT_START, EXEC_COMMAND
 from exceptions import *
 from utils import input_parser
 
@@ -16,7 +16,8 @@ def main(user_args):
              raise NoInputFilesException(DEFAULT_MESSAGES.get("NO_INPUT_FILES"))
 
         # TODO: Verify if the output file inserted by user, already exist on file system
-        print(user_input)
+        EXEC_COMMAND[user_input.get("command")](user_input)
+
 
 if __name__ == "__main__":
     try:
