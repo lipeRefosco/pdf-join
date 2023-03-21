@@ -1,21 +1,24 @@
-from PyPDF2 import PdfReader, PdfMerger
+"""Module provaded to define the return type of open_all_files funcition"""
+from PyPDF2 import PdfReader, PdfWriter
+
 
 JOIN_CMD = "join"
-
 VALID_COMMANDS = [JOIN_CMD]
 
+
 def join_run(user_input_parsed):
-    # pdf_reader = PdfReader()
-    pdf_merger = PdfMerger()
-    pdf_merger.set_page_layout(layout="/OneColumn")
+    """Script to Command Join"""
+    all_pdf = [PdfReader(file) for file in user_input_parsed.get("inputs")]
+    new_pdf = PdfWriter()
 
-    [pdf_merger.append(file) for file in user_input_parsed.get("inputs")]
+    for pdf in all_pdf:
+        new_pdf.append(pdf)
 
-    pdf_merger.write(open(user_input_parsed.get("output"), 'wb'))
-    pdf_merger.close()
+    new_pdf.write(user_input_parsed.get("output"))
+    new_pdf.close()
 
     print(user_input_parsed)
-    
+
 
 EXEC_COMMAND = {
     JOIN_CMD: join_run
