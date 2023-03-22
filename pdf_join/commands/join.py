@@ -1,5 +1,5 @@
 """Module provaded to define the return type of open_all_files funcition"""
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 
 def join(user_input_parsed):
     """Script to Command Join"""
