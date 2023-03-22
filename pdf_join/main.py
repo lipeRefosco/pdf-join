@@ -15,8 +15,10 @@ def main(user_args):
         if not has_inputs_files:
              raise NoInputFilesException(DEFAULT_MESSAGES.get("NO_INPUT_FILES"))
 
-        # TODO: Verify if the output file inserted by user, already exist on file system
-        EXEC_COMMAND[user_input.get("command")](user_input)
+        # Extract function of command
+        command = EXEC_COMMAND[user_input.get("command")]
+        
+        command(user_input)
 
 
 if __name__ == "__main__":
