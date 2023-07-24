@@ -24,11 +24,12 @@ def input_handler(next_inputs: list, parsed_input: dict) -> None:
     return
 
 
+# First indice is the short name and the second 
 OPTIONS_HANDLER = {
-    "-i": input_handler,
-    "--input": input_handler,
-    "-o": output_handler,
-    "--output": output_handler,
+    INPUT_OPTION[0]: input_handler,
+    INPUT_OPTION[1]: input_handler,
+    OUTPUT_OPTION[0]: output_handler,
+    OUTPUT_OPTION[1]: output_handler,
     "-h": help_handler,
     "--help": help_handler
 }
